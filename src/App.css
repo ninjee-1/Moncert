@@ -1,0 +1,150 @@
+/* utility css */
+#root {
+  --text-color-1: #262626;
+  --text-color-5: #333333;
+  --text-color-2: #5d5f61;
+  --text-color-3: #d0d5dd;
+  --text-color-4: #ffffff;
+  --primary-blue: #01429e;
+}
+
+.xl-bold {
+  @apply font-inter font-semibold;
+  font-size: 64px;
+  line-height: 88px;
+  color: var(--text-color-1);
+}
+
+.xl-regular {
+  @apply font-inter font-normal;
+  font-size: 64px;
+  line-height: 88px;
+  color: var(--text-color-1);
+}
+
+.l-regular {
+  @apply font-inter font-normal;
+  font-size: 36px;
+  line-height: 48px;
+  color: var(--text-color-1);
+}
+
+.l-bold {
+  @apply font-inter font-semibold;
+  font-size: 36px;
+  line-height: 48px;
+  color: var(--text-color-1);
+}
+
+.m-bold {
+  @apply font-inter font-semibold;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--text-color-1);
+}
+
+.m-bold-blue {
+  @apply font-inter font-semibold;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--primary-blue);
+}
+
+.m-regular {
+  @apply font-inter font-normal;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--text-color-1);
+}
+
+.s-regular-gray {
+  @apply font-inter font-normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--text-color-2);
+}
+
+.s-regular {
+  @apply font-inter font-normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--text-color-1);
+}
+
+.s-bold {
+  @apply font-inter font-semibold;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--text-color-1);
+}
+
+.s-bold-gray {
+  @apply font-inter font-semibold;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--text-color-5);
+}
+
+.s-bold-primary {
+  @apply font-inter font-semibold;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--primary-blue);
+}
+
+.footer-title {
+  @apply s-bold-primary mb-4 mt-4;
+}
+
+.icon-color {
+  color: var(--text-color-1);
+}
+
+.swiper-button-prev {
+  display: none !important;
+}
+
+.swiper-button-next::after {
+  color: var(--text-color-1); /* text-blue-600 */
+  content: "›"; /* энэ Unicode сум */
+  font-size: 20px !important; /* хэмжээ */
+  font-weight: bold;
+  position: absolute;
+  /* right: -10px; */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.iconBlue {
+  color: var(--primary-blue);
+}
+
+.outline-non {
+  outline: none;
+}
+
+.gradient-text {
+  background: linear-gradient(
+    to right,
+    #003399,
+    #00eaff
+  ); /* pink → purple → blue */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 10s linear infinite;
+}
