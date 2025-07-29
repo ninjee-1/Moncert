@@ -1,8 +1,8 @@
-import Logo1 from "../../assets/img/OrganizationLogos/image.svg";
-import Logo2 from "../../assets/img/OrganizationLogos/image-1.svg";
-import Logo3 from "../../assets/img/OrganizationLogos/image-2.svg";
-import Logo4 from "../../assets/img/OrganizationLogos/image-3.svg";
-import Logo5 from "../../assets/img/OrganizationLogos/image-4.svg";
+import Logo1 from "../../assets/img/OrganizationLogos/Image.svg";
+import Logo2 from "../../assets/img/OrganizationLogos/Image-1.svg";
+import Logo3 from "../../assets/img/OrganizationLogos/Image-2.svg";
+import Logo4 from "../../assets/img/OrganizationLogos/Image-3.svg";
+import Logo5 from "../../assets/img/OrganizationLogos/Image-4.svg";
 
 const logos = [Logo1, Logo2, Logo3, Logo4, Logo5];
 
