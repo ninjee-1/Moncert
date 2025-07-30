@@ -36,6 +36,13 @@
   color: var(--text-color-1);
 }
 
+.l-bold-gray {
+  @apply font-inter font-semibold;
+  font-size: 36px;
+  line-height: 48px;
+  color: var(--text-color-2);
+}
+
 .m-bold {
   @apply font-inter font-semibold;
   font-size: 24px;
