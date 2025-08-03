@@ -23,7 +23,7 @@ function Header() {
         </div>
         <div className="flex items-center justify-between mb-2">
           <div className="flex text-xl s-regular-gray items-center">
-            <a href="#" className="mr-6 z-50">
+            <a href="/" className="mr-6 z-50">
               <img src={Logo} alt="React Logo" />
             </a>
 
@@ -36,7 +36,7 @@ function Header() {
                 <div className="absolute left-0 bg-white shadow-md z-40 hidden group-hover:block w-screen top-[110px]">
                   <div className="container xl mx-auto px-14 py-10 grid grid-cols-2">
                     <a
-                      href="/company"
+                      href="/about/leadership"
                       className="block px-4 py-2 hover:bg-gray-100"
                     >
                       <div className="flex">
@@ -53,7 +53,7 @@ function Header() {
                       </div>
                     </a>
                     <a
-                      href="/company"
+                      href="/about/auditors"
                       className="block px-4 py-2 hover:bg-gray-100"
                     >
                       <div className="flex">
@@ -68,7 +68,7 @@ function Header() {
                       </div>
                     </a>
                     <a
-                      href="/company"
+                      href="/about/management"
                       className="block px-4 py-2 hover:bg-gray-100"
                     >
                       <div className="flex">
@@ -85,7 +85,7 @@ function Header() {
                       </div>
                     </a>
                     <a
-                      href="/company"
+                      href="/about/approved"
                       className="block px-4 py-2 hover:bg-gray-100"
                     >
                       <div className="flex">
@@ -102,7 +102,7 @@ function Header() {
                       </div>
                     </a>
                     <a
-                      href="/company"
+                      href="/about/accreditation"
                       className="block px-4 py-2 hover:bg-gray-100"
                     >
                       <div className="flex">
@@ -117,7 +117,7 @@ function Header() {
                       </div>
                     </a>
                     <a
-                      href="/company"
+                      href="/about/rules"
                       className="block px-4 py-2 hover:bg-gray-100"
                     >
                       <div className="flex">
@@ -142,7 +142,7 @@ function Header() {
                 <div className="absolute left-0 bg-white shadow-md z-40 hidden group-hover:block w-screen top-[110px]">
                   <div className="container xl mx-auto px-14 py-10 grid grid-cols-3">
                     <a
-                      href="/company"
+                      href="/confirm/approve"
                       className="block px-4 py-2 hover:bg-gray-100"
                     >
                       <div className="flex">
@@ -159,7 +159,7 @@ function Header() {
                       </div>
                     </a>
                     <a
-                      href="/company"
+                      href="/confirm/employee"
                       className="block px-4 py-2 hover:bg-gray-100"
                     >
                       <div className="flex">
@@ -174,7 +174,7 @@ function Header() {
                       </div>
                     </a>
                     <a
-                      href="/company"
+                      href="/confirm/product"
                       className="block px-4 py-2 hover:bg-gray-100"
                     >
                       <div className="flex">

@@ -7,13 +7,21 @@ import "@fontsource/inter/600.css"; // SemiBold
 function renderRoutes(routeList) {
   return routeList.map(({ path, element, layout: Layout = ({ children }) => <>
         {children}
-      </> }) => (
-    <Route
-      key={path}
-      path={path}
-      element={<Layout>{element}</Layout>} // 👉 layout ашиглаж байна
-    />
+      </>, children }) => (
+    <Route key={path} path={path} element={<Layout>{element}</Layout>}>
+      {children && renderRoutes(children)}{" "}
+      {/* 👈 child route-уудыг рекурсивээр дамжуулах */}
+    </Route>
   ));
+  // return routeList.map(({ path, element, layout: Layout = ({ children }) => <>
+  //       {children}
+  //     </> }) => (
+  //   <Route
+  //     key={path}
+  //     path={path}
+  //     element={<Layout>{element}</Layout>} // 👉 layout ашиглаж байна
+  //   />
+  // ));
 }
 
 function App() {

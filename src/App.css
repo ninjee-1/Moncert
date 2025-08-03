@@ -36,11 +36,23 @@
   color: var(--text-color-1);
 }
 
+.l-bold-none {
+  @apply font-inter font-semibold;
+  font-size: 36px;
+  line-height: 48px;
+}
+
 .l-bold-gray {
   @apply font-inter font-semibold;
   font-size: 36px;
   line-height: 48px;
   color: var(--text-color-2);
+}
+
+.m-bold-none {
+  @apply font-inter font-semibold;
+  font-size: 24px;
+  line-height: 32px;
 }
 
 .m-bold {
@@ -78,6 +90,13 @@
   color: var(--text-color-1);
 }
 
+.s-regular-white {
+  @apply font-inter font-normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffffff;
+}
+
 .s-bold {
   @apply font-inter font-semibold;
   font-size: 16px;
@@ -92,11 +111,36 @@
   color: var(--text-color-5);
 }
 
+.s-bold-light {
+  @apply font-inter font-semibold;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--text-color-2);
+}
+
+.s-bold-no-color {
+  @apply font-inter font-semibold;
+  font-size: 16px;
+  line-height: 24px;
+}
+
 .s-bold-primary {
   @apply font-inter font-semibold;
   font-size: 16px;
   line-height: 24px;
   color: var(--primary-blue);
+}
+
+.light-regular-none {
+  @apply font-inter font-normal;
+  font-size: 14px;
+  line-height: 24px;
+}
+.light-regular {
+  @apply font-inter font-normal;
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--text-color-2);
 }
 
 .footer-title {
@@ -107,6 +151,20 @@
   color: var(--text-color-1);
 }
 
+.icon-primary-color {
+  filter: brightness(0) saturate(100%) invert(17%) sepia(98%) saturate(2415%)
+    hue-rotate(209deg) brightness(85%) contrast(99%);
+}
+
+.icon-gray-2 {
+  filter: brightness(0) saturate(100%) invert(15%) sepia(4%) saturate(16%)
+    hue-rotate(26deg) brightness(90%) contrast(83%);
+}
+
+.icon-green {
+  filter: brightness(0) saturate(100%) invert(27%) sepia(85%) saturate(2018%)
+    hue-rotate(160deg) brightness(105%) contrast(95%);
+}
 .swiper-button-prev {
   display: none !important;
 }
@@ -141,6 +199,14 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+}
+
+.clip-diagonal {
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+.clip-diagonal-img {
+  clip-path: polygon(0 15%, 100% 5%, 100% 100%, 0 100%);
 }
 
 @keyframes scroll {
