@@ -114,8 +114,8 @@ export const routes = [
         element: <Standards />,
       },
       {
-        path: "iso",
-        layout: StandardLayout,
+        path: ":id",
+        // layout: StandardLayout,
         element: <Standard />,
         // element: (
         //   <StandardLayout>

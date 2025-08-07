@@ -34,7 +34,7 @@ function AboutLayout({ children }) {
               <div
                 key={tab.value}
                 onClick={() => navigate(`/about/${tab.value}`)}
-                className={`py-2 px-4 s-bold-no-color border-t ${
+                className={`py-2 px-4 s-bold-no-color border-t hover:border-t-2 hover:border-grayOne hover:text-grayOne cursor-pointer ${
                   currentPath === tab.value
                     ? "border-t-2 border-grayOne text-grayOne"
                     : "text-grayOne hover:text-grayOne"
