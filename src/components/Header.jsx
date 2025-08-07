@@ -29,7 +29,7 @@ function Header() {
 
             <nav className="space-x-6 flex">
               <div className="group">
-                <a href="#" className="hover:underline transition">
+                <a href="/about" className="hover:underline transition">
                   Бидний тухай
                 </a>
                 {/* Submenu - Initially hidden, shown on hover */}
@@ -135,7 +135,7 @@ function Header() {
                 </div>
               </div>
               <div className="group">
-                <a href="#" className="hover:underline">
+                <a href="/confirm" className="hover:underline">
                   Баталгаажуулалт
                 </a>
                 {/* Submenu - Initially hidden, shown on hover */}
@@ -206,151 +206,6 @@ function Header() {
                       <div className="flex">
                         <Sunrise className="iconBlue" />
                         <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Sunrise className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Sunrise className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Target className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Target className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Target className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Package className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Package className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Package className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="group">
-                <a href="#" className="hover:underline">
-                  Шийдэл
-                </a>
-                {/* Submenu - Initially hidden, shown on hover */}
-                <div className="absolute left-0 bg-white shadow-md z-40 hidden group-hover:block w-screen top-[110px]">
-                  <div className="container xl mx-auto px-14 py-10 grid grid-cols-3">
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Sunrise className="iconBlue" />
-                        <div className="pl-3">
                           <p className="s-bold-gray">
                             Мэдээллийн аюулгүй байдлын аудит
                           </p>
@@ -371,6 +226,153 @@ function Header() {
                           <p className="s-bold-gray">
                             Кибер аюулгүй байдлын эрсдэлийн үнэлгээ
                           </p>
+                          <p>
+                            Demo Description - t non deserunt ullamco est sit
+                            aliqua amet sint.
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+
+
+              </div>
+              <div className="group">
+                <a href="/standard" className="hover:underline">
+                  Шийдэл
+                </a>
+                {/* Submenu - Initially hidden, shown on hover */}
+                <div className="absolute left-0 bg-white shadow-md z-40 hidden group-hover:block w-screen top-[110px]">
+                  <div className="container xl mx-auto px-14 py-10 grid grid-cols-3">
+                    <a
+                      href="/standard/iso"
+                      className="block px-4 py-2 hover:bg-gray-100"
+                    >
+                      <div className="flex">
+                        <Sunrise className="iconBlue" />
+                        <div className="pl-3">
+                          <p className="s-bold-gray">ISO 9001:2015</p>
+                          <p>
+                            Demo Description - t non deserunt ullamco est sit
+                            aliqua amet sint.
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                    <a
+                      href="/company"
+                      className="block px-4 py-2 hover:bg-gray-100"
+                    >
+                      <div className="flex">
+                        <Sunrise className="iconBlue" />
+                        <div className="pl-3">
+                          <p className="s-bold-gray">ISO 9001:2015</p>
+                          <p>
+                            Demo Description - t non deserunt ullamco est sit
+                            aliqua amet sint.
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                    <a
+                      href="/company"
+                      className="block px-4 py-2 hover:bg-gray-100"
+                    >
+                      <div className="flex">
+                        <Sunrise className="iconBlue" />
+                        <div className="pl-3">
+                          <p className="s-bold-gray">ISO 9001:2015</p>
+                          <p>
+                            Demo Description - t non deserunt ullamco est sit
+                            aliqua amet sint.
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                    <a
+                      href="/company"
+                      className="block px-4 py-2 hover:bg-gray-100"
+                    >
+                      <div className="flex">
+                        <Target className="iconBlue" />
+                        <div className="pl-3">
+                          <p className="s-bold-gray">ISO 9001:2015</p>
+                          <p>
+                            Demo Description - t non deserunt ullamco est sit
+                            aliqua amet sint.
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                    <a
+                      href="/company"
+                      className="block px-4 py-2 hover:bg-gray-100"
+                    >
+                      <div className="flex">
+                        <Target className="iconBlue" />
+                        <div className="pl-3">
+                          <p className="s-bold-gray">ISO 9001:2015</p>
+                          <p>
+                            Demo Description - t non deserunt ullamco est sit
+                            aliqua amet sint.
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                    <a
+                      href="/company"
+                      className="block px-4 py-2 hover:bg-gray-100"
+                    >
+                      <div className="flex">
+                        <Target className="iconBlue" />
+                        <div className="pl-3">
+                          <p className="s-bold-gray">ISO 9001:2015</p>
+                          <p>
+                            Demo Description - t non deserunt ullamco est sit
+                            aliqua amet sint.
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                    <a
+                      href="/company"
+                      className="block px-4 py-2 hover:bg-gray-100"
+                    >
+                      <div className="flex">
+                        <Package className="iconBlue" />
+                        <div className="pl-3">
+                          <p className="s-bold-gray">ISO 9001:2015</p>
+                          <p>
+                            Demo Description - t non deserunt ullamco est sit
+                            aliqua amet sint.
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                    <a
+                      href="/company"
+                      className="block px-4 py-2 hover:bg-gray-100"
+                    >
+                      <div className="flex">
+                        <Package className="iconBlue" />
+                        <div className="pl-3">
+                          <p className="s-bold-gray">ISO 9001:2015</p>
+                          <p>
+                            Demo Description - t non deserunt ullamco est sit
+                            aliqua amet sint.
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                    <a
+                      href="/company"
+                      className="block px-4 py-2 hover:bg-gray-100"
+                    >
+                      <div className="flex">
+                        <Package className="iconBlue" />
+                        <div className="pl-3">
+                          <p className="s-bold-gray">ISO 9001:2015</p>
                           <p>
                             Demo Description - t non deserunt ullamco est sit
                             aliqua amet sint.

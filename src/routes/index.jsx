@@ -15,6 +15,9 @@ import Rules from "../pages/About/Rules";
 import ConfirmationLayout from "../layouts/ConfirmationLayout";
 import Employee from "../pages/Confirmation/Employee";
 import Product from "../pages/Confirmation/Product";
+import Standards from "../pages/Standards";
+import Standard from "../pages/Standards/Standard";
+import StandardLayout from "../layouts/StandardLayout";
 
 export const routes = [
   {
@@ -27,11 +30,12 @@ export const routes = [
     path: "/about",
     label: "About",
     layout: AboutLayout,
-    element: (
-      <AboutLayout>
-        <Outlet />
-      </AboutLayout>
-    ),
+    element: <Outlet />,
+    // element: (
+    //   <AboutLayout>
+    //     <Outlet />
+    //   </AboutLayout>
+    // ),
     children: [
       {
         index: true, // /about
@@ -67,11 +71,12 @@ export const routes = [
     path: "/confirm",
     label: "Confirm",
     layout: ConfirmationLayout,
-    element: (
-      <ConfirmationLayout>
-        <Outlet />
-      </ConfirmationLayout>
-    ),
+    element: <Outlet />,
+    // element: (
+    //   <ConfirmationLayout>
+    //     <Outlet />
+    //   </ConfirmationLayout>
+    // ),
     children: [
       {
         index: true, // /about
@@ -89,6 +94,49 @@ export const routes = [
         path: "product", // /about/contact
         element: <Product />,
       },
+    ],
+  },
+  {
+    path: "standard",
+    label: "Standard",
+    layout: DefaultLayout,
+    element: <Outlet />, // This will render the nested routes
+    // element: (
+    //   <DefaultLayout>
+    //     <Outlet />
+    //   </DefaultLayout>
+    // ),
+    // <Standards />,
+    children: [
+      {
+        // path: "solution",
+        index: true, // /about
+        element: <Standards />,
+      },
+      {
+        path: "iso",
+        layout: StandardLayout,
+        element: <Standard />,
+        // element: (
+        //   <StandardLayout>
+        //     <Standard />
+        //   </StandardLayout>
+        // ),
+        // < Standard />,
+        // element: (
+        //   <ConfirmationLayout>
+        //     <Outlet />
+        //   </ConfirmationLayout>
+        // ),
+      },
+      // {
+      //   path: "employee", // /about/contact
+      //   element: <Employee />,
+      // },
+      // {
+      //   path: "product", // /about/contact
+      //   element: <Product />,
+      // },
     ],
   },
 ];
