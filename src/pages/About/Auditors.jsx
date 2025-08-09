@@ -1,13 +1,18 @@
+import React, { useState } from "react";
 import WhiteButton from "../../components/Button/btnWhite.jsx";
 import BlueButton from "../../components/Button/index.jsx";
 import Routine from "../../assets/img/routine.png";
+import Popup from "../../components/Modal/index.jsx";
 
 import Users from "../../components/Icon/Home/Users";
 import ClickHand from "../../components/Icon/Home/ClickHand";
 import Clubs from "../../components/Icon/Home/Clubs";
 import Card from "../../components/Icon/Home/Card";
+import AuditorImg from "../../assets/img/auditor.png";
 
 function Auditors() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
   return (
     <div>
       <div className="text-center my-10">
@@ -16,11 +21,54 @@ function Auditors() {
           We Focus on the details of everything we do. All to help businesses
           around the world Focus on what's most important to them.
         </p>
-        <div className="space-x-4">
-          <WhiteButton name="Аудитороор бүртгүүлэх" />
-          <BlueButton name="Аудитор хайх" />
+        <div className="space-x-4 flex justify-center">
+          <div>
+            <WhiteButton name="Аудитороор бүртгүүлэх" />
+          </div>
+          <div onClick={() => setIsPopupOpen(true)}>
+            <BlueButton name="Аудитор хайх" />
+          </div>
         </div>
       </div>
+
+      <Popup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)}>
+        <div className="my-10">
+          <div className="py-5">
+            <h2 className="l-bold-none text-primaryBlue text-center ">
+              Энхтөгс Банзрагч
+            </h2>
+            <div className="flex justify-center light-regular-none text-white space-x-3 my-2">
+              <p className="border-r-2 pr-3">Баталгаажуулалтын газрын дарга</p>
+              <p>Баг ахлах тэргүүлэх аудитор</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 mt-10 mb-28 gap-5">
+            <div className="">
+              <img src={AuditorImg} alt="" className="mx-auto w-60" />
+            </div>
+            <div className="space-y-3 pr-5">
+              <div>
+                <h5 className="s-bold-primary">Name</h5>
+                <p className="s-regular">Энхтөгс Банзрагч</p>
+              </div>
+              <div>
+                <h5 className="s-bold-primary">Position</h5>
+                <p className="s-regular">
+                  Баталгаажуулалтын газрын дарга, БАТА
+                </p>
+              </div>
+              <div>
+                <h5 className="s-bold-primary">Description</h5>
+                <p className="s-regular">
+                  ISO 9001:2015, ISO 14001:2015, ISO 45001:2018, ISO 27001:2013,
+                  ISO 22000:2018, ISO 37001:2013 Тэргүүлэх аудитор, Баг ахлагч
+                  аудитор, Олон улсын код: 8470
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Popup>
 
       <div className="mb-10">
         <h5 className="m-bold py-10">
