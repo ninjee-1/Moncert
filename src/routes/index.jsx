@@ -18,6 +18,8 @@ import Product from "../pages/Confirmation/Product";
 import Standards from "../pages/Standards";
 import Standard from "../pages/Standards/Standard";
 import StandardLayout from "../layouts/StandardLayout";
+import CyberSecurity from "../pages/CyberSecurity";
+import CyberLayout from "../layouts/CyberLayout";
 
 export const routes = [
   {
@@ -93,6 +95,18 @@ export const routes = [
       {
         path: "product", // /about/contact
         element: <Product />,
+      },
+    ],
+  },
+  {
+    path: "/cyber-secutiry",
+    label: "CyberSecurity",
+    layout: CyberLayout,
+    element: <Outlet />,
+    children: [
+      {
+        index: true,
+        element: <CyberSecurity />,
       },
     ],
   },

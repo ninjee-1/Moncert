@@ -221,3 +221,22 @@
 .animate-scroll {
   animation: scroll 10s linear infinite;
 }
+
+@media (min-width: 1280px) {
+  .nav-res {
+    display: flex;
+  }
+  .nav-btn {
+    display: block !important;
+  }
+  .nav-btn-m {
+    display: none !important;
+  }
+}
+
+@media (max-width: 500px) {
+  .top {
+    flex-direction: column !important;
+    text-align: center;
+  }
+}

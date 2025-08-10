@@ -17,7 +17,7 @@ function Footer() {
   return (
     <footer className="bg-gray-100 text-center p-4 s-regular-gray">
       <div className="container xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 my-6 border-b border-grayOne pb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 my-6 border-b border-grayOne pb-12">
           <div className="text-left">
             <img src={Logo} alt="Logo img" />
             <h6 className="footer-title">Монсертф ТҮБ ХХК</h6>
@@ -77,7 +77,7 @@ function Footer() {
             </ul>
           </div>
         </div>
-        <div className="flex justify-evenly border-b border-grayOne pb-12 mb-5 mt-12">
+        <div className="md:flex md:justify-evenly border-b border-grayOne pb-12 mb-5 mt-12">
           <div className="text-left space-y-5">
             <h6 className="m-bold">
               Баталгаажуулалт хийх Олон Улсын итгэмжлэл
@@ -88,7 +88,7 @@ function Footer() {
             </p>
             <Button name={btnName} />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 place-items-center">
+          <div className="grid grid-cols-3 pt-10 md:grid-cols-3 gap-2 place-items-center">
             <img src={Logo1} alt="Logo1" />
             <img src={Logo2} alt="Logo2" />
             <img src={Logo3} alt="Logo3" />
@@ -96,9 +96,9 @@ function Footer() {
             <img src={Logo5} alt="Logo5" />
           </div>
         </div>
-        <div className="flex justify-between my-4">
+        <div className="md:flex md:justify-between my-4">
           <div>© 2025. Бүх эрх хуулиар хамгаалагдсан</div>
-          <div className="flex space-x-6">
+          <div className="md:flex space-x-6">
             <div>Үйлчилгээний нөхцөл</div>
             <div>Бодлого</div>
           </div>
