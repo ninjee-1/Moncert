@@ -21,45 +21,97 @@ import Collapse from "../components/Collapse";
 function Home() {
   return (
     <div>
-      <div className=" flex">
-        <div className="w-7/12 flex justify-end">
-          <div className="container lg:max-w-[960px] md:max-w-screen-sm h-full flex items-center">
-            <div className="w-full">
-              <Swiper
-                modules={[Navigation, Autoplay]}
-                navigation
-                allowSlidePrev={false}
-                autoplay={{ delay: 3000 }}
-                loop={true}
-                className="w-full"
-              >
-                {slideItems.map((item, idx) => (
-                  <SwiperSlide key={idx} className="">
-                    <div className="flex flex-col  items-start justify-center gap-4  text-gray-800 w-10/12 ">
-                      <h2 className="gradient-text text-2xl xl-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-                        {item.title}
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing
-                        elit. Ipsam sapiente commodi labore suscipit! Aperiam
-                        assumenda numquam ipsam soluta, omnis asperiores?
-                      </p>
+      {/* <div className="relative my-10 ">
+        <div className="container xl mx-auto ">
+          <div className="md:flex ">
+            <div className="w-full md:w-7/12 flex justify-end items-center">
+              <div className="container lg:max-w-[960px] md:max-w-screen-sm h-full flex items-center">
+                <div className="w-full">
+                  <Swiper
+                    modules={[Navigation, Autoplay]}
+                    navigation
+                    allowSlidePrev={false}
+                    autoplay={{ delay: 3000 }}
+                    loop={true}
+                    className="w-full"
+                  >
+                    {slideItems.map((item, idx) => (
+                      <SwiperSlide key={idx} className="">
+                        <div className="flex flex-col  items-start justify-center gap-4  text-gray-800 w-10/12 ">
+                          <h2 className="gradient-text text-2xl xl-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+                            {item.title}
+                          </h2>
+                          <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Ipsam sapiente commodi labore suscipit!
+                            Aperiam assumenda numquam ipsam soluta, omnis
+                            asperiores?
+                          </p>
 
-                      <div className="flex space-x-5 my-2 s-bold">
-                        <Button name="Үнийн санал авах" />
-                        <WhiteButton name="Дэлгэрэнгүй" />
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
+                          <div className="flex space-x-5 my-2 s-bold">
+                            <Button name="Үнийн санал авах" />
+                            <WhiteButton name="Дэлгэрэнгүй" />
+                          </div>
+                        </div>
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
-        {/* Баруун тал - вэбийн баруун захад тулна */}
-        <div className="w-5/12">
+        
+        <div className="absolute right-0 hidden md:block md:w-5/12 md:top-0">
+          
           <img src={HeaderImg} className="w-full" alt="" />
+        </div>
+      </div> */}
+
+      <div className="relative my-10">
+        <div className="container mx-auto px-4 relative">
+          <div className="flex flex-col md:flex-row items-center ">
+            {/* Slider - left */}
+            <div className="w-full lg:w-6/12 flex justify-start md:justify-end z-10">
+              <div className="w-full lg:max-w-[960px] md:max-w-screen-sm">
+                <Swiper
+                  modules={[Navigation, Autoplay]}
+                  navigation
+                  allowSlidePrev={false}
+                  autoplay={{ delay: 3000 }}
+                  loop={true}
+                  className="w-full"
+                >
+                  {slideItems.map((item, idx) => (
+                    <SwiperSlide key={idx}>
+                      <div className="flex flex-col items-start justify-center gap-4 text-gray-800 w-full">
+                        <h2 className="gradient-text text-2xl xl-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+                          {item.title}
+                        </h2>
+                        <p className="text-sm md:text-base">
+                          Lorem ipsum dolor sit, amet consectetur adipisicing
+                          elit.
+                        </p>
+                        <div className="flex flex-wrap gap-4 my-2 s-bold">
+                          <Button name="Үнийн санал авах" />
+                          <WhiteButton name="Дэлгэрэнгүй" />
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
+            </div>
+
+            {/* Image - right, overlap effect */}
+            <div className="hidden lg:w-full lg:block  relative  flex justify-end z-0">
+              <img
+                src={HeaderImg}
+                alt="Header"
+                className="w-full h-auto  object-contain"
+              />
+            </div>
+          </div>
         </div>
       </div>
 

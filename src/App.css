@@ -10,135 +10,135 @@
 
 .xl-bold {
   @apply font-inter font-semibold;
-  font-size: 64px;
+  font-size: 4rem;
   line-height: 88px;
   color: var(--text-color-1);
 }
 
 .xl-regular {
   @apply font-inter font-normal;
-  font-size: 64px;
+  font-size: 4rem;
   line-height: 88px;
   color: var(--text-color-1);
 }
 
 .l-regular {
   @apply font-inter font-normal;
-  font-size: 36px;
+  font-size: 2.25rem;
   line-height: 48px;
   color: var(--text-color-1);
 }
 
 .l-bold {
   @apply font-inter font-semibold;
-  font-size: 36px;
+  font-size: 2.25rem;
   line-height: 48px;
   color: var(--text-color-1);
 }
 
 .l-bold-none {
   @apply font-inter font-semibold;
-  font-size: 36px;
+  font-size: 2.25rem;
   line-height: 48px;
 }
 
 .l-bold-gray {
   @apply font-inter font-semibold;
-  font-size: 36px;
+  font-size: 2.25rem;
   line-height: 48px;
   color: var(--text-color-2);
 }
 
 .m-bold-none {
   @apply font-inter font-semibold;
-  font-size: 24px;
+  font-size: 1.5rem;
   line-height: 32px;
 }
 
 .m-bold {
   @apply font-inter font-semibold;
-  font-size: 24px;
+  font-size: 1.5rem;
   line-height: 32px;
   color: var(--text-color-1);
 }
 
 .m-bold-blue {
   @apply font-inter font-semibold;
-  font-size: 24px;
+  font-size: 1.5rem;
   line-height: 32px;
   color: var(--primary-blue);
 }
 
 .m-regular {
   @apply font-inter font-normal;
-  font-size: 24px;
+  font-size: 1.5rem;
   line-height: 32px;
   color: var(--text-color-1);
 }
 
 .s-regular-gray {
   @apply font-inter font-normal;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 24px;
   color: var(--text-color-2);
 }
 
 .s-regular {
   @apply font-inter font-normal;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 24px;
   color: var(--text-color-1);
 }
 
 .s-regular-white {
   @apply font-inter font-normal;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 24px;
   color: #ffffff;
 }
 
 .s-bold {
   @apply font-inter font-semibold;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 24px;
   color: var(--text-color-1);
 }
 
 .s-bold-gray {
   @apply font-inter font-semibold;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 24px;
   color: var(--text-color-5);
 }
 
 .s-bold-light {
   @apply font-inter font-semibold;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 24px;
   color: var(--text-color-2);
 }
 
 .s-bold-no-color {
   @apply font-inter font-semibold;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 24px;
 }
 
 .s-bold-primary {
   @apply font-inter font-semibold;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 24px;
   color: var(--primary-blue);
 }
 
 .light-regular-none {
   @apply font-inter font-normal;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 24px;
 }
 .light-regular {
   @apply font-inter font-normal;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 24px;
   color: var(--text-color-2);
 }
@@ -232,11 +232,20 @@
   .nav-btn-m {
     display: none !important;
   }
+  .mobile-nav {
+    display: none;
+  }
 }
 
 @media (max-width: 500px) {
   .top {
     flex-direction: column !important;
     text-align: center;
+  }
+}
+
+@media (min-width: 500px) {
+  .ptop div {
+    padding: 5px !important;
   }
 }

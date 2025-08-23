@@ -8,7 +8,7 @@ const logos = [Logo1, Logo2, Logo3, Logo4, Logo5];
 
 function InfiniteLogoSlider() {
   return (
-    <div className="relative z-10 overflow-hidden bg-white py-4 border shadow-gray-400 rounded-[2rem] shadow shadow-md outline-none border-none max-w-[1280px] mx-auto">
+    <div className="relative z-10 overflow-hidden bg-white py-4 border shadow-gray-400 rounded-[2rem] shadow shadow-md outline-none border-none max-w-[1280px] mx-5 lg:mx-auto md:mx-32 sm:mx-10">
       <h1 className="text-center m-bold-blue py-2">
         Баталгаажуулсан байгууллага
       </h1>

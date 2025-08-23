@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Button from "./Button";
 import {
   Sunrise,
@@ -7,6 +7,8 @@ import {
   Package,
   Youtube,
   Archive,
+  ArrowRight,
+  ArrowDown,
   Menu,
   X,
 } from "react-feather";
@@ -17,6 +19,7 @@ const menus = [
     id: 1,
     name: "Бидний тухай",
     url: "/about",
+    cols: 2,
     children: [
       {
         id: 1,
@@ -66,6 +69,7 @@ const menus = [
     id: 2,
     name: "Баталгаажуулалт",
     url: "/confirm",
+    cols: 3,
     children: [
       {
         id: 1,
@@ -94,6 +98,7 @@ const menus = [
     id: 3,
     name: "Кибер аюулгүй байдал",
     url: "/cyber-secutiry",
+    cols: 2,
     children: [
       {
         id: 1,
@@ -115,6 +120,7 @@ const menus = [
     id: 4,
     name: "Шийдэл",
     url: "/standard",
+    cols: 3,
     children: [
       {
         id: 1,
@@ -197,386 +203,95 @@ function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openSubMenu, setOpenSubMenu] = useState(null);
   const btnName = "Үнийн санал авах";
+  const mobileMenuRef = useRef(null);
 
   const toggleMenu = (id) => {
-    setOpenSubMenu(openSubMenu === id ? null : id); // нэг дарвал нээж/хаана
+    setOpenSubMenu(openSubMenu === id ? null : id);
   };
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target) &&
+        menuOpen
+      ) {
+        setMenuOpen(false);
+        setOpenSubMenu(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuOpen]);
+
+  // Close menu when window is resized to desktop size
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setMenuOpen(false);
+        setOpenSubMenu(null);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <header className="w-full shadow text-black p-4 s-regular-gray relative">
       <div className="container xl mx-auto">
-        <div className="z-50  flex top space-x-6 lg:justify-end lg:s-regular-gray mt-5 mb-2 underline justify-center sm:text-xs text-[10px]">
+        <div className="z-50  flex top ptop lg:justify-end lg:s-regular-gray mt-5 mb-2 underline justify-center sm:text-xs text-[10px]">
           <div>+(976)-70115522</div>
           <div>Холбоо барих</div>
           <div>Нэвтрэх/Бүртгүүлэх</div>
         </div>
         <div className="flex items-center justify-between mb-2">
           <div className="flex text-xl s-regular-gray items-center">
-            <a
-              href="/"
-              className={`mr-6 z-50 ${
-                menuOpen ? "left-0 top-0 fixed m-5" : ""
-              }`}
-            >
+            <a href="/" className="mr-6 z-50">
               <img src={Logo} alt="React Logo" />
             </a>
 
             <nav className="space-x-6 hidden nav-res">
-              <div className="group">
-                <a href="/about" className="hover:underline transition">
-                  Бидний тухай
-                </a>
-                {/* Submenu - Initially hidden, shown on hover */}
-                <div className="absolute left-0 bg-white shadow-md z-30 hidden group-hover:block w-screen top-[110px]">
-                  <div className="container xl mx-auto px-14 py-10 grid grid-cols-2">
-                    <a
-                      href="/about/leadership"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Sunrise className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">
-                            Удирдлага, Зохион байгуулалт
-                          </p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
+              {menus.map((menu, index) => (
+                <div key={index} className="group">
+                  <a href={menu.url} className="hover:underline transition">
+                    {menu.name}
+                  </a>
+                  {menu.children && (
+                    <div className="absolute left-0 bg-white shadow-md z-30 hidden group-hover:block w-screen top-[100px] translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                      <div
+                        className={`container xl mx-auto px-14 py-10 grid grid-cols-${menu.cols}`}
+                      >
+                        {menu.children?.map((submenu, subindex) => (
+                          <a
+                            key={subindex}
+                            href={submenu.url}
+                            onClick={() => {
+                              setMenuOpen(false);
+                              setOpenSubMenu(null);
+                            }}
+                            className="block px-4 py-2 hover:bg-gray-100 rounded"
+                          >
+                            <div className="flex items-start">
+                              {submenu.icon}
+                              <div className="pl-3">
+                                <p className="s-bold-gray">{submenu.name}</p>
+                                <p>{submenu.desc}</p>
+                              </div>
+                            </div>
+                          </a>
+                        ))}
                       </div>
-                    </a>
-                    <a
-                      href="/about/auditors"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <BookOpen className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">Аудиторууд</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/about/management"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Target className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">
-                            Менежментийн багийн гишүүд
-                          </p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/about/approved"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Archive className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">
-                            Баталгаажсан байгууллагууд
-                          </p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/about/accreditation"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Package className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">Итгэмжлэл</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/about/rules"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Youtube className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">Дүрэм журмууд</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
+                    </div>
+                  )}
                 </div>
-              </div>
-              <div className="group">
-                <a href="/confirm" className="hover:underline">
-                  Баталгаажуулалт
-                </a>
-                {/* Submenu - Initially hidden, shown on hover */}
-                <div className="absolute left-0 bg-white shadow-md z-30 hidden group-hover:block w-screen top-[110px]">
-                  <div className="container xl mx-auto px-14 py-10 grid grid-cols-3">
-                    <a
-                      href="/confirm/approve"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Sunrise className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">
-                            Менежментийн тогтолцооны баталгаажуулалт
-                          </p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/confirm/employee"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Target className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">Ажилтны баталгаажуулалт</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/confirm/product"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Package className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">
-                            Бүтээгдэхүүний үйлчилгээний баталгаажуулалт
-                          </p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="group">
-                <a href="/cyber-secutiry" className="hover:underline">
-                  Кибер аюулгүй байдал
-                </a>
-                <div className="absolute left-0 bg-white shadow-md z-30 hidden group-hover:block w-screen top-[110px]">
-                  <div className="container xl mx-auto px-14 py-10 grid grid-cols-3">
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Sunrise className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">
-                            Мэдээллийн аюулгүй байдлын аудит
-                          </p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Sunrise className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">
-                            Кибер аюулгүй байдлын эрсдэлийн үнэлгээ
-                          </p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="group">
-                <a href="/standard" className="hover:underline">
-                  Шийдэл
-                </a>
-                {/* Submenu - Initially hidden, shown on hover */}
-                <div className="absolute left-0 bg-white shadow-md z-30 hidden group-hover:block w-screen top-[110px]">
-                  <div className="container xl mx-auto px-14 py-10 grid grid-cols-3">
-                    <a
-                      href="/standard/iso"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Sunrise className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Sunrise className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Sunrise className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Target className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Target className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Target className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Package className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Package className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Package className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              {/* <a href="/contact">Шийдэл</a> */}
-              <a href="/contact">Тогтвортой хөгжил</a>
-              <a href="/contact">Мэдээ мэдээлэл</a>
+              ))}
             </nav>
           </div>
           <div className="z-50 hidden nav-btn">
@@ -586,500 +301,76 @@ function Header() {
           {/* Mobile Menu Button */}
           <div
             onClick={() => setMenuOpen(!menuOpen)}
-            className={`nav-btn-m z-50  ${
-              menuOpen ? "fixed right-0 top-0 m-5" : ""
-            }`}
+            className="nav-btn-m z-50 mobile-nav"
           >
             {menuOpen ? <X size={28} /> : <Menu size={28} />}
           </div>
         </div>
 
         {menuOpen && (
-          <div className="lg:hidden fixed top-0 left-0 w-full h-[100vh] bg-white z-40 p-6 overflow-y-auto ">
-            <nav className="space-y-5 flex flex-col mt-20">
+          <div
+            ref={mobileMenuRef}
+            className="top-0 left-0 w-full  bg-white z-40 p-6 overflow-y-auto"
+          >
+            <nav className="space-y-5 flex flex-col container xl mx-auto">
               {menus.map((menu, index) => (
                 <div key={index} className="group">
                   <a
                     href={menu.url}
-                    onClick={() => toggleMenu(menu.id)}
-                    className="hover:underline transition"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (menu.children) {
+                        toggleMenu(menu.id);
+                      } else {
+                        setMenuOpen(false);
+                        setOpenSubMenu(null);
+                      }
+                    }}
+                    className="hover:underline transition flex items-center space-x-2"
                   >
-                    {menu.name}
+                    <p>{menu.name}</p>
+                    <p>
+                      {menu.children ? (
+                        openSubMenu === menu.id ? (
+                          <ArrowDown width="20px" />
+                        ) : (
+                          <ArrowRight width="20px" />
+                        )
+                      ) : (
+                        ""
+                      )}
+                    </p>
                   </a>
-                  <div
-                    className={` left-0 bg-white shadow-md z-40  group-hover:block ${
-                      openSubMenu == menu.id ? "" : "hidden"
-                    }`}
-                  >
-                    <div className=" mx-auto px-14 py-10 grid grid-cols-1 sm:grid-cols-2 ">
+                  {menu.children && (
+                    <div
+                      className={`mt-3 ml-4 space-y-3 ${
+                        openSubMenu === menu.id ? "block" : "hidden"
+                      }`}
+                    >
                       {menu.children?.map((submenu, subindex) => (
                         <a
-                          key={index + subindex}
+                          key={subindex}
                           href={submenu.url}
-                          className="block px-4 py-2 hover:bg-gray-100"
+                          onClick={() => {
+                            setMenuOpen(false);
+                            setOpenSubMenu(null);
+                          }}
+                          className="block px-4 py-2 hover:bg-gray-100 rounded"
                         >
-                          <div className="flex">
+                          <div className="flex items-start">
                             {submenu.icon}
                             <div className="pl-3">
-                              <p className="s-bold-gray">{submenu.name}</p>
+                              <p className="s-bold-gray ">{submenu.name}</p>
                               <p>{submenu.desc}</p>
                             </div>
                           </div>
                         </a>
                       ))}
-                      {/* <a
-                        href="/about/leadership"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                      >
-                        <div className="flex">
-                          <Sunrise className="iconBlue" />
-                          <div className="pl-3">
-                            <p className="s-bold-gray">
-                              Удирдлага, Зохион байгуулалт
-                            </p>
-                            <p>
-                              Demo Description - t non deserunt ullamco est sit
-                              aliqua amet sint.
-                            </p>
-                          </div>
-                        </div>
-                      </a> */}
-                      {/* <a
-                        href="/about/auditors"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                      >
-                        <div className="flex">
-                          <BookOpen className="iconBlue" />
-                          <div className="pl-3">
-                            <p className="s-bold-gray">Аудиторууд</p>
-                            <p>
-                              Demo Description - t non deserunt ullamco est sit
-                              aliqua amet sint.
-                            </p>
-                          </div>
-                        </div>
-                      </a> */}
-                      {/* <a
-                        href="/about/management"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                      >
-                        <div className="flex">
-                          <Target className="iconBlue" />
-                          <div className="pl-3">
-                            <p className="s-bold-gray">
-                              Менежментийн багийн гишүүд
-                            </p>
-                            <p>
-                              Demo Description - t non deserunt ullamco est sit
-                              aliqua amet sint.
-                            </p>
-                          </div>
-                        </div>
-                      </a> */}
-                      {/* <a
-                        href="/about/approved"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                      >
-                        <div className="flex">
-                          <Archive className="iconBlue" />
-                          <div className="pl-3">
-                            <p className="s-bold-gray">
-                              Баталгаажсан байгууллагууд
-                            </p>
-                            <p>
-                              Demo Description - t non deserunt ullamco est sit
-                              aliqua amet sint.
-                            </p>
-                          </div>
-                        </div>
-                      </a> */}
-                      {/* <a
-                        href="/about/accreditation"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                      >
-                        <div className="flex">
-                          <Package className="iconBlue" />
-                          <div className="pl-3">
-                            <p className="s-bold-gray">Итгэмжлэл</p>
-                            <p>
-                              Demo Description - t non deserunt ullamco est sit
-                              aliqua amet sint.
-                            </p>
-                          </div>
-                        </div>
-                      </a> */}
-                      {/* <a
-                        href="/about/rules"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                      >
-                        <div className="flex">
-                          <Youtube className="iconBlue" />
-                          <div className="pl-3">
-                            <p className="s-bold-gray">Дүрэм журмууд</p>
-                            <p>
-                              Demo Description - t non deserunt ullamco est sit
-                              aliqua amet sint.
-                            </p>
-                          </div>
-                        </div>
-                      </a> */}
                     </div>
-                  </div>
+                  )}
                 </div>
               ))}
-              {/* <div className="group">
-                <a href="/about" className="hover:underline transition">
-                  Бидний тухай &gt;
-                </a>
-                <div className=" left-0 bg-white shadow-md z-40  group-hover:block ">
-                  <div className="container xl mx-auto px-14 py-10 grid grid-cols-1 sm:grid-cols-2 ">
-                    <a
-                      href="/about/leadership"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Sunrise className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">
-                            Удирдлага, Зохион байгуулалт
-                          </p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/about/auditors"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <BookOpen className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">Аудиторууд</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/about/management"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Target className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">
-                            Менежментийн багийн гишүүд
-                          </p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/about/approved"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Archive className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">
-                            Баталгаажсан байгууллагууд
-                          </p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/about/accreditation"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Package className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">Итгэмжлэл</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/about/rules"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Youtube className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">Дүрэм журмууд</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div> */}
-              {/* <div className="group">
-                <a href="/confirm" className="hover:underline">
-                  Баталгаажуулалт
-                </a>
-                <div className="absolute left-0 bg-white shadow-md z-40 hidden group-hover:block w-screen top-[110px]">
-                  <div className="container xl mx-auto px-14 py-10 grid grid-cols-3">
-                    <a
-                      href="/confirm/approve"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Sunrise className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">
-                            Менежментийн тогтолцооны баталгаажуулалт
-                          </p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/confirm/employee"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Target className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">Ажилтны баталгаажуулалт</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/confirm/product"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Package className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">
-                            Бүтээгдэхүүний үйлчилгээний баталгаажуулалт
-                          </p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div> */}
-              {/* <div className="group">
-                <a href="/cyber-secutiry" className="hover:underline">
-                  Кибер аюулгүй байдал
-                </a>
-                <div className="absolute left-0 bg-white shadow-md z-40 hidden group-hover:block w-screen top-[110px]">
-                  <div className="container xl mx-auto px-14 py-10 grid grid-cols-3">
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Sunrise className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">
-                            Мэдээллийн аюулгүй байдлын аудит
-                          </p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Sunrise className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">
-                            Кибер аюулгүй байдлын эрсдэлийн үнэлгээ
-                          </p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div> */}
-              {/* <div className="group">
-                <a href="/standard" className="hover:underline">
-                  Шийдэл
-                </a>
-                <div className="absolute left-0 bg-white shadow-md z-40 hidden group-hover:block w-screen top-[110px]">
-                  <div className="container xl mx-auto px-14 py-10 grid grid-cols-3">
-                    <a
-                      href="/standard/iso"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Sunrise className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Sunrise className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Sunrise className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Target className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Target className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Target className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Package className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Package className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                    <a
-                      href="/company"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      <div className="flex">
-                        <Package className="iconBlue" />
-                        <div className="pl-3">
-                          <p className="s-bold-gray">ISO 9001:2015</p>
-                          <p>
-                            Demo Description - t non deserunt ullamco est sit
-                            aliqua amet sint.
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div> */}
-              {/* <a href="/contact">Тогтвортой хөгжил</a>
-              <a href="/contact">Мэдээ мэдээлэл</a> */}
-              <div className="z-50 ">
+              <div className="z-50 pt-4">
                 <Button name={btnName} />
               </div>
             </nav>
