@@ -237,6 +237,30 @@
   }
 }
 
+@media (max-width: 965px) {
+  .homeSection2 {
+    flex-direction: column !important;
+  }
+  .homeSection2Title {
+    padding: 50px !important;
+  }
+  .infinitySlider1 {
+    bottom: 65rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .infinitySlider {
+    bottom: 40rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .infinitySlider1 {
+    bottom: 65rem !important;
+  }
+}
+
 @media (max-width: 500px) {
   .top {
     flex-direction: column !important;

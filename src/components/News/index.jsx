@@ -13,9 +13,9 @@ function News() {
           We’re proud of the progress we’ve made — and the heads that we <br />
           talent around the world.
         </p>
-        <div className="grid grid-cols-2 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 justify-center gap-5 px-4">
           <div>
-            <div className="w-[80%] border border-solid rounded-2xl overflow-hidden hover:bg-gray-50">
+            <div className="md:w-[80%] border border-solid rounded-2xl overflow-hidden hover:bg-gray-50">
               <div>
                 <img src={latest.img} alt="" className="w-full" />
               </div>

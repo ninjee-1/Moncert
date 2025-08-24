@@ -264,7 +264,7 @@ function Header() {
                     {menu.name}
                   </a>
                   {menu.children && (
-                    <div className="absolute left-0 bg-white shadow-md z-30 hidden group-hover:block w-screen top-[100px] translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                    <div className="absolute left-0 bg-white shadow-md z-30 hidden group-hover:block w-screen top-[110px] translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
                       <div
                         className={`container xl mx-auto px-14 py-10 grid grid-cols-${menu.cols}`}
                       >

@@ -68,7 +68,7 @@ function Home() {
         </div>
       </div> */}
 
-      <div className="relative my-10">
+      <div className="relative mt-10 mb-20">
         <div className="container mx-auto px-4 relative">
           <div className="flex flex-col md:flex-row items-center ">
             {/* Slider - left */}
@@ -115,17 +115,19 @@ function Home() {
         </div>
       </div>
 
-      <div className="shadow">
-        <InfiniteLogoSlider className="relative z-40" />
-        <div className="bg-gray-100 pt-24 relative left-1/2 transform -translate-x-1/2 z-0">
+      <div className="shadow relative">
+        <div className="absolute  inset-0 flex items-center bottom-[80rem] infinitySlider infinitySlider1">
+          <InfiniteLogoSlider className="z-40" />
+        </div>
+        <div className="bg-gray-100 md:mt-28 z-0">
           {" "}
           {/* my-16 -top-40 */}
-          <div className="max-w-[1280px] mx-auto">
-            <div className="flex  justify-between items-center py-12">
+          <div className=" md:max-w-[1280px] px-4 mx-auto ">
+            <div className="flex homeSection2 justify-between items-center pb-12 pt-40">
               <div>
                 <img src={AuditorsBg} alt="" />
               </div>
-              <div className="max-w-[500px]">
+              <div className="max-w-[500px] homeSection2Title">
                 <h3 className="m-bold">
                   Олон улсад хүлээн зөвшөөрөгдсөн аудиторууд
                 </h3>
@@ -439,7 +441,7 @@ function Home() {
       </div>
 
       <div className="container xl mx-auto">
-        <div className="flex items-center justify-between space-x-6 my-28">
+        <div className="flex items-center flex-wrap justify-between space-x-6 my-28">
           <div className="space-y-5">
             <h5 className="l-bold-gray">
               Helping a local{" "}
